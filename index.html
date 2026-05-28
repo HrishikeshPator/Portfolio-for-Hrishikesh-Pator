@@ -589,20 +589,14 @@
     .cp-bg-3 { background: linear-gradient(135deg, #12100d 0%, #2e2318 100%); }
     .cp-bg-4 { background: linear-gradient(135deg, #0d0d17 0%, #1a1a30 100%); }
 
-    /* Mock UI inside panels */
-    .case-mock {
-      position: absolute; inset: 0; z-index: 1; padding: 28px;
-      display: flex; flex-direction: column; gap: 12px;
-      opacity: .6;
+    /* Image Preview inside panels */
+    .case-preview {
+      position: absolute; top: 0; left: 0; right: 0; height: 65%; z-index: 1;
+      background-size: 100% auto; background-position: top center; background-repeat: no-repeat;
+      opacity: 0.9;
+      mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
     }
-    .cm-bar { height: 7px; background: rgba(255,255,255,.06); border-radius: 3px; }
-    .cm-bar.w40 { width: 40%; } .cm-bar.w70 { width: 70%; } .cm-bar.w55 { width: 55%; }
-    .cm-row { display: flex; gap: 10px; }
-    .cm-block { background: rgba(255,255,255,.04); border-radius: 3px; flex: 1; height: 80px; }
-    .cm-block.tall { height: 130px; }
-    .cm-block.sm { height: 48px; }
-    .cm-chart { display: flex; align-items: flex-end; gap: 5px; height: 80px; }
-    .cm-chart div { flex: 1; background: linear-gradient(to top, rgba(212,168,67,.3), rgba(212,168,67,.06)); border-radius: 2px 2px 0 0; }
 
     .case-overlay {
       position: absolute; inset: 0; z-index: 2;
@@ -1130,7 +1124,9 @@
     <div class="h-scroll-outer" id="hScrollOuter">
       <div class="h-scroll-track" id="hScrollTrack" style="padding: 32px 0 60px;">
         <div class="case-panel">
-          <div class="case-panel-bg cp-bg-1" style="background-image: url('https://api.microlink.io/?screenshot=true&meta=false&embed=screenshot.url&url=https://www.dekaandassociates.in/'); background-size: cover; background-position: top;"></div>
+          <div class="case-panel-bg cp-bg-1">
+            <div class="case-preview" style="background-image: url('https://api.microlink.io/?screenshot=true&meta=false&embed=screenshot.url&url=https://www.dekaandassociates.in/');"></div>
+          </div>
           <div class="case-overlay">
             <span class="case-tag">Finance Services</span>
             <div class="case-name">Deka and Associates</div>
@@ -1142,7 +1138,9 @@
         </div>
 
         <div class="case-panel">
-          <div class="case-panel-bg cp-bg-2" style="background-image: url('https://api.microlink.io/?screenshot=true&meta=false&embed=screenshot.url&url=https://www.pahariabirtanews.in/'); background-size: cover; background-position: top;"></div>
+          <div class="case-panel-bg cp-bg-2">
+            <div class="case-preview" style="background-image: url('https://api.microlink.io/?screenshot=true&meta=false&embed=screenshot.url&url=https://www.pahariabirtanews.in/');"></div>
+          </div>
           <div class="case-overlay">
             <span class="case-tag">News & Media</span>
             <div class="case-name">Pahari Abirta</div>
@@ -1154,7 +1152,9 @@
         </div>
 
         <div class="case-panel">
-          <div class="case-panel-bg cp-bg-3" style="background-image: url('https://play-lh.googleusercontent.com/YjTSImRCJygawTutqe2Tb-rznPPb73pPQ6gMQZKRgKlxSNGcLshce07qAR639cH6hhQjC-Dmr7MG2hjb2LQAYQ'); background-size: cover; background-position: center;"></div>
+          <div class="case-panel-bg cp-bg-3">
+            <div class="case-preview" style="background-image: url('https://play-lh.googleusercontent.com/YjTSImRCJygawTutqe2Tb-rznPPb73pPQ6gMQZKRgKlxSNGcLshce07qAR639cH6hhQjC-Dmr7MG2hjb2LQAYQ');"></div>
+          </div>
           <div class="case-overlay">
             <span class="case-tag">Trading / Fintech</span>
             <div class="case-name">Breakout Trade</div>
@@ -1166,7 +1166,9 @@
         </div>
 
         <div class="case-panel">
-          <div class="case-panel-bg cp-bg-4" style="background-image: url('https://play-lh.googleusercontent.com/9wJOLgxYvssDG9hHiIZRijoTXkTbbNP9HwWizMw-3bRTTnxwkktlzn1eyzgNqDUPRkHTJeVb2Y89HUZllVHm'); background-size: cover; background-position: center;"></div>
+          <div class="case-panel-bg cp-bg-4">
+            <div class="case-preview" style="background-image: url('https://play-lh.googleusercontent.com/9wJOLgxYvssDG9hHiIZRijoTXkTbbNP9HwWizMw-3bRTTnxwkktlzn1eyzgNqDUPRkHTJeVb2Y89HUZllVHm');"></div>
+          </div>
           <div class="case-overlay">
             <span class="case-tag">Education / Community</span>
             <div class="case-name">Tiwa Dictionary</div>
@@ -1178,7 +1180,9 @@
         </div>
 
         <div class="case-panel">
-          <div class="case-panel-bg cp-bg-3" style="background-image: url('https://api.microlink.io/?screenshot=true&meta=false&embed=screenshot.url&url=https://hrishikeshpator.github.io/RhinoInks/'); background-size: cover; background-position: top;"></div>
+          <div class="case-panel-bg cp-bg-3">
+            <div class="case-preview" style="background-image: url('https://api.microlink.io/?screenshot=true&meta=false&embed=screenshot.url&url=https://hrishikeshpator.github.io/RhinoInks/');"></div>
+          </div>
           <div class="case-overlay">
             <span class="case-tag">Studio / Portfolio</span>
             <div class="case-name">Rhino Inks</div>
@@ -1190,7 +1194,9 @@
         </div>
 
         <div class="case-panel">
-          <div class="case-panel-bg cp-bg-1" style="background-image: url('https://play-lh.googleusercontent.com/u2zClglU43fnHVD4jJ1_dtY67GsaWGIEcA-C7BuTZ9A1x04TC7quy9fX7oTsAKlRjwJYkDFLx2J-uXTtAKQH5A'); background-size: cover; background-position: center;"></div>
+          <div class="case-panel-bg cp-bg-1">
+            <div class="case-preview" style="background-image: url('https://play-lh.googleusercontent.com/u2zClglU43fnHVD4jJ1_dtY67GsaWGIEcA-C7BuTZ9A1x04TC7quy9fX7oTsAKlRjwJYkDFLx2J-uXTtAKQH5A');"></div>
+          </div>
           <div class="case-overlay">
             <span class="case-tag">E-Books / Community</span>
             <div class="case-name">Tiwa books</div>
@@ -1202,7 +1208,9 @@
         </div>
 
         <div class="case-panel">
-          <div class="case-panel-bg cp-bg-2" style="background-image: url('https://api.microlink.io/?screenshot=true&meta=false&embed=screenshot.url&url=https://study-point-be92e.web.app/'); background-size: cover; background-position: top;"></div>
+          <div class="case-panel-bg cp-bg-2">
+            <div class="case-preview" style="background-image: url('https://api.microlink.io/?screenshot=true&meta=false&embed=screenshot.url&url=https://study-point-be92e.web.app/');"></div>
+          </div>
           <div class="case-overlay">
             <span class="case-tag">Education / Coaching</span>
             <div class="case-name">Puhor</div>
