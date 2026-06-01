@@ -1401,13 +1401,13 @@
       <div class="gsap-right">
         <form class="c-form" id="cForm">
           <div class="f-row">
-            <div class="fg"><label>Your Name</label><input type="text" placeholder="Ramesh Kumar"/></div>
-            <div class="fg"><label>Business Name</label><input type="text" placeholder="Your Company"/></div>
+            <div class="fg"><label>Your Name</label><input type="text" id="contactName" required placeholder="Ramesh Kumar"/></div>
+            <div class="fg"><label>Business Name</label><input type="text" id="contactBusiness" placeholder="Your Company"/></div>
           </div>
-          <div class="fg"><label>Email Address</label><input type="email" placeholder="ramesh@yourcompany.com"/></div>
+          <div class="fg"><label>Email Address</label><input type="email" id="contactEmail" required placeholder="ramesh@yourcompany.com"/></div>
           <div class="fg">
             <label>What do you need?</label>
-            <select>
+            <select id="contactService" required>
               <option value="" disabled selected>Select a service…</option>
               <option>Business Website / Landing Page</option>
               <option>Mobile or Web App</option>
@@ -1418,7 +1418,7 @@
               <option>Something else</option>
             </select>
           </div>
-          <div class="fg"><label>Tell me about your project</label><textarea rows="5" placeholder="What problem does this solve? What's your timeline and budget?"></textarea></div>
+          <div class="fg"><label>Tell me about your project</label><textarea id="contactMessage" required rows="5" placeholder="What problem does this solve? What's your timeline and budget?"></textarea></div>
           <button type="submit" class="btn-g" style="border:none;width:100%;justify-content:center;font-size:14px;">Send Message <span class="a">→</span></button>
         </form>
       </div>
@@ -1612,18 +1612,7 @@
       });
     }
 
-    /* ── Form submit ── */
-    document.getElementById('cForm').addEventListener('submit', e => {
-      e.preventDefault();
-      const btn = e.target.querySelector('button');
-      btn.innerHTML = '✓ Message Sent!';
-      btn.style.background = '#52b788';
-      setTimeout(() => {
-        btn.innerHTML = 'Send Message <span class="a">→</span>';
-        btn.style.background = '';
-        e.target.reset();
-      }, 3500);
-    });
+
 
     /* ── Smooth anchor scroll ── */
     document.querySelectorAll('a[href^="#"]').forEach(a => {
@@ -1650,6 +1639,67 @@
     console.log('%c HP ', 'background:#d4a843;color:#080808;font-weight:bold;font-size:16px;padding:4px 10px;');
     console.log('%c Hrishikesh Pator — Developer Portfolio', 'color:#7a7a7a;font-size:12px;');
   }); // end DOMContentLoaded
+  </script>
+  <!-- Firebase Integration -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getDatabase, ref, push, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+    const firebaseConfig = {
+      projectId: "portfoliohrishikesh",
+      appId: "1:1043042301519:web:5f97fd45d5dea96baf5c3a",
+      storageBucket: "portfoliohrishikesh.firebasestorage.app",
+      apiKey: "AIzaSyCCy759NtoibQincpQ6ElX3qcEyxG0mHhc",
+      authDomain: "portfoliohrishikesh.firebaseapp.com",
+      messagingSenderId: "1043042301519",
+      measurementId: "G-DNXDLY94HN",
+      databaseURL: "https://portfoliohrishikesh-default-rtdb.firebaseio.com"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+
+    const cForm = document.getElementById('cForm');
+    if (cForm) {
+      cForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = e.target.querySelector('button');
+        
+        btn.innerHTML = 'Sending...';
+        btn.disabled = true;
+
+        const name = document.getElementById('contactName').value;
+        const business = document.getElementById('contactBusiness').value;
+        const email = document.getElementById('contactEmail').value;
+        const service = document.getElementById('contactService').value;
+        const message = document.getElementById('contactMessage').value;
+
+        try {
+          await push(ref(database, "messages"), {
+            name,
+            business,
+            email,
+            service,
+            message,
+            timestamp: serverTimestamp()
+          });
+
+          btn.innerHTML = '✓ Message Sent!';
+          btn.style.background = '#52b788';
+          e.target.reset();
+        } catch (error) {
+          console.error("Error adding document: ", error);
+          btn.innerHTML = 'Error! Try again';
+          btn.style.background = '#d9534f';
+        }
+
+        setTimeout(() => {
+          btn.innerHTML = 'Send Message <span class="a">→</span>';
+          btn.style.background = '';
+          btn.disabled = false;
+        }, 3500);
+      });
+    }
   </script>
 </body>
 </html>
